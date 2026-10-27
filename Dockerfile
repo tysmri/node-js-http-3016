@@ -12,3 +12,10 @@ ENV LANG=ja_JP.UTF-8
 ENV TZ=Asia/Tokyo
 
 WORKDIR /app
+
+COPY package.json yarn.lock ./
+RUN corepack enable && yarn install --frozen-lockfile
+
+COPY . .
+
+CMD ["node", "index.js"]
